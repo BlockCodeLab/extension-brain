@@ -75,8 +75,18 @@ export default {
           code += this.injectId(this.STATEMENT_PREFIX, block);
         }
         const addPrompt = provideAddPromptFunctionJs.call(this);
-        const prompt = this.valueToCode(block, 'PROMPT', this.ORDER_NONE) || 0;
+        const prompt = this.valueToCode(block, 'PROMPT', this.ORDER_NONE) || '';
         code += `${addPrompt}(target.id, String(${prompt}));\n`;
+        return code;
+      },
+      python(block) {
+        this.definitions_['import_extension_brain'] = 'from extensions.brain import brain';
+        let code = '';
+        if (this.STATEMENT_PREFIX) {
+          code += this.injectId(this.STATEMENT_PREFIX, block);
+        }
+        const prompt = this.valueToCode(block, 'PROMPT', this.ORDER_NONE) || '';
+        code += `brain.set_prompt(target.id, str(${prompt}))\n`;
         return code;
       },
     },
@@ -95,6 +105,15 @@ export default {
         }
         const clearPrompt = provideClearPromptFunctionJs.call(this);
         code += `${clearPrompt}(target.id);\n`;
+        return code;
+      },
+      python(block) {
+        this.definitions_['import_extension_brain'] = 'from extensions.brain import brain';
+        let code = '';
+        if (this.STATEMENT_PREFIX) {
+          code += this.injectId(this.STATEMENT_PREFIX, block);
+        }
+        code += `brain.clear_prompt(target.id)\n`;
         return code;
       },
     },
@@ -125,7 +144,17 @@ export default {
         }
         const askQuestion = provideAskQuestionFunctionJs.call(this, 3);
         const question = this.valueToCode(block, 'QUESTION', this.ORDER_NONE) || 0;
-        code += `await ${askQuestion}(target.id, String(${question}));\n`;
+        code += `await ${askQuestion}(target.id, String(${question}))\n`;
+        return code;
+      },
+      python(block) {
+        this.definitions_['import_extension_brain'] = 'from extensions.brain import brain';
+        let code = '';
+        if (this.STATEMENT_PREFIX) {
+          code += this.injectId(this.STATEMENT_PREFIX, block);
+        }
+        const question = this.valueToCode(block, 'QUESTION', this.ORDER_NONE) || 0;
+        code += `await brain.ask(target.id, str(${question}))\n`;
         return code;
       },
     },
@@ -142,6 +171,11 @@ export default {
         this.definitions_['brain_brains'] = `runtime.data['brain_brains'] = {};`;
         const code = `(runtime.data['brain_brains'][target.id]?.message ?? '')`;
         return [code, this.ORDER_ATOMIC];
+      },
+      python() {
+        this.definitions_['import_extension_brain'] = 'from extensions.brain import brain';
+        const code = `brain.answer(target.id)`;
+        return [code, this.ORDER_FUNCTION_CALL];
       },
     },
   ],
