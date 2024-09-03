@@ -149,12 +149,15 @@ export default {
       },
       python(block) {
         this.definitions_['import_extension_brain'] = 'from extensions.brain import brain';
+        const apikey = localStorage.getItem(`brain.connection.apikey`);
+        const apisecret = localStorage.getItem(`brain.connection.apisecret`);
+        const useapi = apikey && apisecret ? `, key="${apikey}", secret="${apisecret}"` : '';
         let code = '';
         if (this.STATEMENT_PREFIX) {
           code += this.injectId(this.STATEMENT_PREFIX, block);
         }
-        const question = this.valueToCode(block, 'QUESTION', this.ORDER_NONE) || 0;
-        code += `await brain.ask(target.id, str(${question}))\n`;
+        const question = this.valueToCode(block, 'QUESTION', this.ORDER_NONE) || '""';
+        code += `await brain.ask(target.id, str(${question}) ${useapi})\n`;
         return code;
       },
     },

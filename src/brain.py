@@ -35,7 +35,7 @@ def get_language():
         return "英语"
 
 
-async def ask(id, content):
+async def ask(id, content, key=sparkai.SPARKAI_KEY, secret=sparkai.SPARKAI_SECRET):
     if not runtime.wifi_connected or not content:
         return ""
 
@@ -54,7 +54,7 @@ async def ask(id, content):
         }
     ]
     messages.extend(dialogs)
-    message = await sparkai.ask(messages)
+    message = await sparkai.ask(messages, key=key, secret=secret)
 
     if len(dialogs) > DIALOGS_LENGTH:
         dialogs.pop(0)
