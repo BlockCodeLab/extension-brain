@@ -43,10 +43,25 @@ export default {
       },
     ],
     description: (
-      <Text
-        id="extension.brain.openplatform.description"
-        defaultMessage="Please register your own <a href='https://xinghuo.xfyun.cn/sparkapi'>iFLYTEK Open Platform (Chinese)</a> account, the test account we provide does not guarantee that every request will be successful."
-      />
+      <>
+        <Text
+          id="extension.brain.openplatform.description1"
+          defaultMessage="Please register your own "
+        />
+        <a
+          href="https://xinghuo.xfyun.cn/sparkapi"
+          target="_blank"
+        >
+          <Text
+            id="extension.brain.openplatform.description2"
+            defaultMessage="iFLYTEK Open Platform (Chinese)"
+          />
+        </a>
+        <Text
+          id="extension.brain.openplatform.description3"
+          defaultMessage=" account, the test account we provide does not guarantee that every request will be successful."
+        />
+      </>
     ),
   },
   blocks: [

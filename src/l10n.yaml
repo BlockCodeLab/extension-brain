@@ -1,8 +1,9 @@
 en:
   extension.brain.name: Brain
   extension.brain.openplatform: iFLYTEK Open Platform authorization
-  extension.brain.openplatform.description: >
-    Please register your own <a href="https://xinghuo.xfyun.cn/sparkapi">iFLYTEK Open Platform (Chinese)</a> account, the test account we provide does not guarantee that every request will be successful.
+  extension.brain.openplatform.description1: 'Please register your own '
+  extension.brain.openplatform.description2: iFLYTEK Open Platform (Chinese)
+  extension.brain.openplatform.description3: ' account, the test account we provide does not guarantee that every request will be successful.'
   extension.brain.addPrompt: add prompt [PROMPT] to Brain
   extension.brain.prompt: your role is a cat
   extension.brain.clearPrompt: delete all prompts
@@ -13,8 +14,9 @@ en:
 zh-Hans:
   extension.brain.name: 智脑
   extension.brain.openplatform: 讯飞开放平台认证信息
-  extension.brain.openplatform.description: >
-    请注册您自己的<a href="https://xinghuo.xfyun.cn/sparkapi">讯飞开放平台</a>账号，我们提供的测试账号不保证每次请求都成功。
+  extension.brain.openplatform.description1: 请注册您自己的
+  extension.brain.openplatform.description2: 讯飞开放平台
+  extension.brain.openplatform.description3: 账号，我们提供的测试账号不保证每次请求都成功。
   extension.brain.addPrompt: 将指令说明 [PROMPT] 加入智脑
   extension.brain.prompt: 你的角色是一只小猫
   extension.brain.clearPrompt: 删除所有指令说明
